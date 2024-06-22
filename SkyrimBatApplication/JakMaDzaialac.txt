@@ -1,0 +1,7 @@
+GUI:
+1. wybieranie dla jakiego batcha i jakiego pluginu dodaæ jakie przedimki typu "player.additem" lub poimki typu 1
+
+zasygnalizowac jakoœ przez pó³ sekundy ¿e trwa robienie kodu
+
+Mod organizer profile folder with plugin.txt
+Mod staging folder

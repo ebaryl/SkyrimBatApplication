@@ -1,0 +1,30 @@
+;Unofficial SSE Patch#Unofficial Skyrim Special Edition Patch
+0F09CD51
+;Storm Calling#StormCalling
+04A9E2A8
+;#MysticismMagic
+2509E2AF
+;#Dawnguard
+44003F4D
+;asdasd#Dragonborn
+550177AC
+
+
+;#Apocalypse - Magic of Skyrim
+player.additem 3003C517 1
+player.additem 3009CD52 1
+player.additem 3003C519 1
+3003C51A
+30177ADA 1
+300177B5 1
+3009CD52
+3009CD53
+30003F4E 1
+30003F51
+300A26E2
+300A26E7
+3010F7F5 1
+3010FD60
+3009E2A9
+3009E2AA 1
+3009E2AD

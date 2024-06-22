@@ -1,0 +1,26 @@
+CategoryModePlugins = [ 'Skyrim.esm', 'Dawnguard.esm', 'HearthFires.esm', 'Dragonborn.esm', 'BSAssets.esm', 'BSHeartlands.esm' ]
+ExcludedPlugins = [ 'AddItemMenuSE.esp' ]
+ForceCategoryMode = false
+PlaceSearchAtTop = false
+
+[Hotkeys]
+ClipboardKey = 59
+ListMenu = 26
+NameSearchKey = 57
+QuantityChangeKey = 29
+SortOrderKey = 48
+
+[Quantities]
+Ammo = 50
+Armor = 1
+Book = 1
+FoodPotion = 10
+Ingredient = 100
+Key = 1
+Light = 10
+Misc = 1
+Note = 1
+IngotOre = 100
+Scroll = 10
+SoulGem = 10
+SpellTome = 1
