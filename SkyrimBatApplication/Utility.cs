@@ -10,7 +10,7 @@ namespace SkyrimBatApplication
 
         public static void ReadFromPlugin()
         {
-            var lines = File.ReadAllLines(Program.PathPluginsTxtDirectory);
+            var lines = File.ReadAllLines(Program.PathPluginsTxtFile);
             int order = 0;
 
             foreach (var line in lines)
@@ -89,7 +89,7 @@ namespace SkyrimBatApplication
 
             if (latestModifiedDirectory != null)
             {
-                Program.PathPluginsTxtDirectory = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+                Program.PathPluginsTxtFile = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
             }
             else
             {
@@ -97,9 +97,71 @@ namespace SkyrimBatApplication
                 //Console.WriteLine("No profiles found.");
             }
         }
+        public static bool IdentifyGame()
+        {
+            if (File.Exists(Path.Combine(Program.PathGameDirectory, "TESV.exe")))
+            {
+                Program.ChoosenGame = "skyrim";
+                return true;
+            }
+            else if (File.Exists(Path.Combine(Program.PathGameDirectory, "SkyrimSE.exe")))
+            {
+                Program.ChoosenGame = "skyrimse";
+                return true;
+            }
+            else if (File.Exists(Path.Combine(Program.PathGameDirectory, "Fallout4.exe")))
+            {
+                Program.ChoosenGame = "fallout";
+                return true;
+            }
+
+            return false;
+            /*
+            if (!Directory.Exists(Program.PathGameDirectory))
+            {
+                throw new DirectoryNotFoundException("The specified folder does not exist.");
+            }
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>()
+            {
+                { "TESV.exe", "Skyrim"},
+                { "SkyrimSE.exe", "Skyrim SE"},
+                { "Fallout4.exe",  "Fallout 4"}
+            };
+
+            string[] executableNames = { "TESV.exe", "SkyrimSE.exe", "Fallout4.exe" };
+            string[] gameNames = { "Skyrim", "Skyrim SE", "Fallout 4" };
+
+            for (int i = 0; i < executableNames.Length; i++)
+            {
+                if (File.Exists(Path.Combine(Program.PathGameDirectory, executableNames[i])))
+                {
+                    //return gameNames[i];
+                    Program.ChoosenGame = gameNames[i];
+                }
+            }
+            */
+
+            //throw new FileNotFoundException("No recognized game executable found in the specified folder.");
+        }
+        public static void RecognizeModOrganizer()
+        {
+            var lines = File.ReadAllLines(Program.PathPluginsTxtFile);
+            var firstLine = lines[0];
+            if (firstLine.Contains("Mod Organizer", StringComparison.OrdinalIgnoreCase))
+            {
+                Program.ModOrganizer = "Mod Organizer";
+            }
+            else if (firstLine.Contains("Vortex", StringComparison.OrdinalIgnoreCase))
+            {
+                Program.ModOrganizer = "Vortex";
+            }
+        }
+
         public static void FindLatestModifiedProfileDirectory()
         {
-            string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
+            //string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
+            string? parentDirectory = Directory.GetParent(Program.PathProfileDirectory)?.FullName;
             if (parentDirectory == null) { return; }
 
             var directories = Directory.GetDirectories(parentDirectory);
@@ -111,7 +173,7 @@ namespace SkyrimBatApplication
 
             if (latestModifiedDirectory != null)
             {
-                Program.PathPluginsTxtDirectory = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+                Program.PathPluginsTxtFile = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
             }
             else
             {

@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SkyrimBatManager" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="PathProfilesDirectory" Type="System.String" Scope="User">
+    <Setting Name="PathProfileDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CheckBoxAutoProfile" Type="System.Boolean" Scope="User">
@@ -21,6 +21,9 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="PathGameDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PathPluginsTxtFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

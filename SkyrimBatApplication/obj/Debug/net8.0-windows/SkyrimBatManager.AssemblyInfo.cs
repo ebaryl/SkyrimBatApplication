@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SkyrimBatManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7c22ba28b354d819b6c97231932adcf12cc1a6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d028f719f97a6534453d5eb7ba09f3944b4a13d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SkyrimBatManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SkyrimBatManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

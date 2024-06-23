@@ -14,10 +14,12 @@ namespace SkyrimBatApplication
             Application.Run(new Form1());
         }
         public static string PathGameDirectory = "";
-        public static string PathPluginsTxtDirectory = "";
         public static string PathModsDirectory = "D:\\Games\\Mods\\MO2\\Skyrim Special Edition\\Mods\\";
-        public static string ModOrganizer = "";
+        public static string PathProfileDirectory = "";
+        public static string PathPluginsTxtFile = "";
+        //string? parentDirectory = Directory.GetParent(Program.PathProfileDirectory)?.FullName;
         public static string ChoosenGame = "";
+        public static string ModOrganizer = "";
         public static int GameFlagsByte;
 
         private static void ExecuteOrderCheck()

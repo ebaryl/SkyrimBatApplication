@@ -35,18 +35,20 @@
             lblToastMessage = new Label();
             btnModsSelectFolder = new Button();
             txtPathModsDirectory = new TextBox();
-            txtPathProfilesDirectory = new TextBox();
+            txtPathProfileDirectory = new TextBox();
             btnProfilesSelectFolder = new Button();
             profilesFolderBrowserDialog = new FolderBrowserDialog();
             checkBoxAutoProfile = new CheckBox();
             lblGame = new Label();
-            lblModOrganizer = new Label();
+            lblOrganizer = new Label();
             comboBoxChoosenGame = new ComboBox();
             comboBoxModOrganizer = new ComboBox();
             timer1 = new System.Windows.Forms.Timer(components);
             txtPathGameDirectory = new TextBox();
             btnGameSelectFolder = new Button();
             gameFolderBrowserDialog = new FolderBrowserDialog();
+            lblChoosenGame = new Label();
+            lblModOrganizer = new Label();
             SuspendLayout();
             // 
             // btnExecute
@@ -81,62 +83,63 @@
             // 
             // btnModsSelectFolder
             // 
-            btnModsSelectFolder.Location = new Point(415, 303);
+            btnModsSelectFolder.Location = new Point(415, 255);
             btnModsSelectFolder.Margin = new Padding(3, 4, 3, 4);
             btnModsSelectFolder.Name = "btnModsSelectFolder";
-            btnModsSelectFolder.Size = new Size(62, 31);
+            btnModsSelectFolder.Size = new Size(62, 27);
             btnModsSelectFolder.TabIndex = 3;
             btnModsSelectFolder.Text = "Select";
             btnModsSelectFolder.UseVisualStyleBackColor = true;
             btnModsSelectFolder.Click += btnModsSelectFolder_Click;
             // 
-            // txtModsFolderPath
+            // txtPathModsDirectory
             // 
             txtPathModsDirectory.BackColor = SystemColors.MenuBar;
-            txtPathModsDirectory.Location = new Point(83, 303);
+            txtPathModsDirectory.Location = new Point(85, 255);
             txtPathModsDirectory.Margin = new Padding(3, 4, 3, 4);
-            txtPathModsDirectory.Name = "txtModsFolderPath";
+            txtPathModsDirectory.Name = "txtPathModsDirectory";
             txtPathModsDirectory.PlaceholderText = "Mods Folder";
             txtPathModsDirectory.Size = new Size(324, 27);
             txtPathModsDirectory.TabIndex = 4;
             txtPathModsDirectory.TextAlign = HorizontalAlignment.Center;
             // 
-            // txtProfilesFolderPath
+            // txtPathProfileDirectory
             // 
-            txtPathProfilesDirectory.BackColor = SystemColors.MenuBar;
-            txtPathProfilesDirectory.Location = new Point(83, 264);
-            txtPathProfilesDirectory.Margin = new Padding(3, 4, 3, 4);
-            txtPathProfilesDirectory.Name = "txtProfilesFolderPath";
-            txtPathProfilesDirectory.PlaceholderText = "Mod Organizer Profile Folder";
-            txtPathProfilesDirectory.Size = new Size(324, 27);
-            txtPathProfilesDirectory.TabIndex = 7;
-            txtPathProfilesDirectory.TextAlign = HorizontalAlignment.Center;
-            txtPathProfilesDirectory.TextChanged += txtProfileFolderPath_TextChanged;
+            txtPathProfileDirectory.BackColor = SystemColors.MenuBar;
+            txtPathProfileDirectory.Location = new Point(85, 290);
+            txtPathProfileDirectory.Margin = new Padding(3, 4, 3, 4);
+            txtPathProfileDirectory.Name = "txtPathProfileDirectory";
+            txtPathProfileDirectory.PlaceholderText = "Mod Organizer Folder With Profiles";
+            txtPathProfileDirectory.Size = new Size(324, 27);
+            txtPathProfileDirectory.TabIndex = 7;
+            txtPathProfileDirectory.TextAlign = HorizontalAlignment.Center;
+            txtPathProfileDirectory.TextChanged += txtPathProfileDirectory_TextChanged;
             // 
             // btnProfilesSelectFolder
             // 
-            btnProfilesSelectFolder.Location = new Point(415, 264);
+            btnProfilesSelectFolder.Location = new Point(415, 290);
             btnProfilesSelectFolder.Margin = new Padding(3, 4, 3, 4);
             btnProfilesSelectFolder.Name = "btnProfilesSelectFolder";
-            btnProfilesSelectFolder.Size = new Size(62, 31);
+            btnProfilesSelectFolder.Size = new Size(62, 27);
             btnProfilesSelectFolder.TabIndex = 8;
             btnProfilesSelectFolder.Text = "Select";
             btnProfilesSelectFolder.UseVisualStyleBackColor = true;
             btnProfilesSelectFolder.Click += btnProfileSelectFolder_Click;
             // 
-            // autoProfilescheckBox
+            // checkBoxAutoProfile
             // 
             checkBoxAutoProfile.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             checkBoxAutoProfile.AutoSize = true;
             checkBoxAutoProfile.BackColor = SystemColors.Menu;
-            checkBoxAutoProfile.Location = new Point(14, 112);
+            checkBoxAutoProfile.Location = new Point(14, 77);
             checkBoxAutoProfile.Margin = new Padding(3, 4, 3, 4);
-            checkBoxAutoProfile.Name = "autoProfilescheckBox";
-            checkBoxAutoProfile.Size = new Size(483, 24);
+            checkBoxAutoProfile.Name = "checkBoxAutoProfile";
+            checkBoxAutoProfile.Size = new Size(175, 24);
             checkBoxAutoProfile.TabIndex = 9;
-            checkBoxAutoProfile.Text = "Detect mod organizer profile change (after check and index update)";
+            checkBoxAutoProfile.Text = "Detect profile change";
+            checkBoxAutoProfile.TextAlign = ContentAlignment.MiddleCenter;
             checkBoxAutoProfile.UseVisualStyleBackColor = false;
-            checkBoxAutoProfile.CheckedChanged += autoProfilecheckBox_CheckedChanged;
+            checkBoxAutoProfile.CheckedChanged += checkBoxAutoProfile_CheckedChanged;
             // 
             // lblGame
             // 
@@ -144,51 +147,51 @@
             lblGame.AutoSize = true;
             lblGame.Location = new Point(14, 12);
             lblGame.Name = "lblGame";
-            lblGame.Size = new Size(48, 20);
+            lblGame.Size = new Size(51, 20);
             lblGame.TabIndex = 10;
-            lblGame.Text = "Game";
+            lblGame.Text = "Game:";
             // 
-            // lblModOrganizer
+            // lblOrganizer
             // 
-            lblModOrganizer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblModOrganizer.AutoSize = true;
-            lblModOrganizer.Location = new Point(11, 64);
-            lblModOrganizer.Name = "lblModOrganizer";
-            lblModOrganizer.Size = new Size(109, 20);
-            lblModOrganizer.TabIndex = 11;
-            lblModOrganizer.Text = "Mod Organizer";
+            lblOrganizer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblOrganizer.AutoSize = true;
+            lblOrganizer.Location = new Point(14, 44);
+            lblOrganizer.Name = "lblOrganizer";
+            lblOrganizer.Size = new Size(77, 20);
+            lblOrganizer.TabIndex = 11;
+            lblOrganizer.Text = "Organizer:";
             // 
-            // comboBoxGame
+            // comboBoxChoosenGame
             // 
             comboBoxChoosenGame.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             comboBoxChoosenGame.FormattingEnabled = true;
             comboBoxChoosenGame.Items.AddRange(new object[] { "Skyrim", "Skyrim SE", "Fallout" });
-            comboBoxChoosenGame.Location = new Point(64, 8);
+            comboBoxChoosenGame.Location = new Point(333, 13);
             comboBoxChoosenGame.Margin = new Padding(3, 4, 3, 4);
-            comboBoxChoosenGame.Name = "comboBoxGame";
+            comboBoxChoosenGame.Name = "comboBoxChoosenGame";
             comboBoxChoosenGame.Size = new Size(119, 28);
             comboBoxChoosenGame.TabIndex = 13;
-            comboBoxChoosenGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
+            comboBoxChoosenGame.SelectedIndexChanged += comboBoxChoosenGame_SelectedIndexChanged;
             // 
             // comboBoxModOrganizer
             // 
             comboBoxModOrganizer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             comboBoxModOrganizer.FormattingEnabled = true;
             comboBoxModOrganizer.Items.AddRange(new object[] { "Mod Organizer", "Vortex" });
-            comboBoxModOrganizer.Location = new Point(117, 60);
+            comboBoxModOrganizer.Location = new Point(298, 56);
             comboBoxModOrganizer.Margin = new Padding(3, 4, 3, 4);
             comboBoxModOrganizer.Name = "comboBoxModOrganizer";
             comboBoxModOrganizer.Size = new Size(154, 28);
             comboBoxModOrganizer.TabIndex = 14;
             comboBoxModOrganizer.SelectedIndexChanged += comboBoxModOrganizer_SelectedIndexChanged;
             // 
-            // txtGameFolderPath
+            // txtPathGameDirectory
             // 
             txtPathGameDirectory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtPathGameDirectory.BackColor = SystemColors.MenuBar;
-            txtPathGameDirectory.Location = new Point(83, 225);
+            txtPathGameDirectory.Location = new Point(85, 220);
             txtPathGameDirectory.Margin = new Padding(3, 4, 3, 4);
-            txtPathGameDirectory.Name = "txtGameFolderPath";
+            txtPathGameDirectory.Name = "txtPathGameDirectory";
             txtPathGameDirectory.PlaceholderText = "Game Folder";
             txtPathGameDirectory.Size = new Size(324, 27);
             txtPathGameDirectory.TabIndex = 15;
@@ -197,14 +200,34 @@
             // 
             // btnGameSelectFolder
             // 
-            btnGameSelectFolder.Location = new Point(415, 225);
+            btnGameSelectFolder.Location = new Point(415, 220);
             btnGameSelectFolder.Margin = new Padding(3, 4, 3, 4);
             btnGameSelectFolder.Name = "btnGameSelectFolder";
-            btnGameSelectFolder.Size = new Size(62, 31);
+            btnGameSelectFolder.Size = new Size(62, 27);
             btnGameSelectFolder.TabIndex = 16;
             btnGameSelectFolder.Text = "Select";
             btnGameSelectFolder.UseVisualStyleBackColor = true;
             btnGameSelectFolder.Click += btnGameSelectFolder_Click;
+            // 
+            // lblChoosenGame
+            // 
+            lblChoosenGame.AutoSize = true;
+            lblChoosenGame.Location = new Point(70, 13);
+            lblChoosenGame.Name = "lblChoosenGame";
+            lblChoosenGame.Size = new Size(87, 20);
+            lblChoosenGame.TabIndex = 17;
+            lblChoosenGame.Text = "gameName";
+            lblChoosenGame.Visible = false;
+            // 
+            // lblModOrganizer
+            // 
+            lblModOrganizer.AutoSize = true;
+            lblModOrganizer.Location = new Point(97, 44);
+            lblModOrganizer.Name = "lblModOrganizer";
+            lblModOrganizer.Size = new Size(112, 20);
+            lblModOrganizer.TabIndex = 18;
+            lblModOrganizer.Text = "organizerName";
+            lblModOrganizer.Visible = false;
             // 
             // Form1
             // 
@@ -214,15 +237,17 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(506, 409);
+            Controls.Add(lblModOrganizer);
+            Controls.Add(lblChoosenGame);
             Controls.Add(btnGameSelectFolder);
             Controls.Add(txtPathGameDirectory);
             Controls.Add(comboBoxModOrganizer);
             Controls.Add(comboBoxChoosenGame);
-            Controls.Add(lblModOrganizer);
+            Controls.Add(lblOrganizer);
             Controls.Add(lblGame);
             Controls.Add(checkBoxAutoProfile);
             Controls.Add(btnProfilesSelectFolder);
-            Controls.Add(txtPathProfilesDirectory);
+            Controls.Add(txtPathProfileDirectory);
             Controls.Add(txtPathModsDirectory);
             Controls.Add(btnModsSelectFolder);
             Controls.Add(lblToastMessage);
@@ -244,17 +269,19 @@
         private Label lblToastMessage;
         private Button btnModsSelectFolder;
         private TextBox txtPathModsDirectory;
-        private TextBox txtPathProfilesDirectory;
+        private TextBox txtPathProfileDirectory;
         private Button btnProfilesSelectFolder;
         private FolderBrowserDialog profilesFolderBrowserDialog;
         private CheckBox checkBoxAutoProfile;
         private Label lblGame;
-        private Label lblModOrganizer;
+        private Label lblOrganizer;
         private ComboBox comboBoxChoosenGame;
         private ComboBox comboBoxModOrganizer;
         private System.Windows.Forms.Timer timer1;
         private TextBox txtPathGameDirectory;
         private Button btnGameSelectFolder;
         private FolderBrowserDialog gameFolderBrowserDialog;
+        private Label lblChoosenGame;
+        private Label lblModOrganizer;
     }
 }

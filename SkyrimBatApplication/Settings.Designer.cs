@@ -26,12 +26,12 @@ namespace SkyrimBatManager {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PathProfilesDirectory {
+        public string PathProfileDirectory {
             get {
-                return ((string)(this["PathProfilesDirectory"]));
+                return ((string)(this["PathProfileDirectory"]));
             }
             set {
-                this["PathProfilesDirectory"] = value;
+                this["PathProfileDirectory"] = value;
             }
         }
         
@@ -104,6 +104,18 @@ namespace SkyrimBatManager {
             }
             set {
                 this["PathGameDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathPluginsTxtFile {
+            get {
+                return ((string)(this["PathPluginsTxtFile"]));
+            }
+            set {
+                this["PathPluginsTxtFile"] = value;
             }
         }
     }
