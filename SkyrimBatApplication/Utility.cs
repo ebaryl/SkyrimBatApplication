@@ -10,7 +10,7 @@ namespace SkyrimBatApplication
 
         public static void ReadFromPlugin()
         {
-            var lines = File.ReadAllLines(Program.FoundPluginsTxtDirectoryPath);
+            var lines = File.ReadAllLines(Program.PathPluginsTxtDirectory);
             int order = 0;
 
             foreach (var line in lines)
@@ -89,7 +89,7 @@ namespace SkyrimBatApplication
 
             if (latestModifiedDirectory != null)
             {
-                Program.FoundPluginsTxtDirectoryPath = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+                Program.PathPluginsTxtDirectory = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
             }
             else
             {
@@ -111,7 +111,7 @@ namespace SkyrimBatApplication
 
             if (latestModifiedDirectory != null)
             {
-                Program.FoundPluginsTxtDirectoryPath = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+                Program.PathPluginsTxtDirectory = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
             }
             else
             {

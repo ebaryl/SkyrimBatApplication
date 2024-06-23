@@ -12,38 +12,52 @@ namespace SkyrimBatApplication
         public Form1()
         {
             InitializeComponent();
-            if (autoProfilescheckBox.Checked)
-            {
-                Utility.FindProfileDirectory();
-                txtProfilesFolderPath.Text = Program.FoundPluginsTxtDirectoryPath;
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            txtProfilesFolderPath.Text = Settings.Default.profilesFolderPath;
-            txtModsFolderPath.Text = Settings.Default.modsFolderPath;
-            autoProfilescheckBox.Checked = Settings.Default.autoProfileCheckBox;
-            comboBoxGame.Text = Settings.Default.ChoosenGame;
+            Program.PathGameDirectory = Settings.Default.PathGameDirectory;
+            txtPathGameDirectory.Text = Settings.Default.PathGameDirectory;
+            Program.PathPluginsTxtDirectory = Settings.Default.PathProfilesDirectory;
+            txtPathProfilesDirectory.Text = Settings.Default.PathProfilesDirectory;
+            Program.PathModsDirectory = Settings.Default.PathModsDirectory;
+            txtPathModsDirectory.Text = Settings.Default.PathModsDirectory;
+            checkBoxAutoProfile.Checked = Settings.Default.CheckBoxAutoProfile;
             Program.ChoosenGame = Settings.Default.ChoosenGame;
-            comboBoxModOrganizer.Text = Settings.Default.ModOrganizer;
+            comboBoxChoosenGame.Text = Settings.Default.ChoosenGame;
             Program.ModOrganizer = Settings.Default.ModOrganizer;
+            comboBoxModOrganizer.Text = Settings.Default.ModOrganizer;
             Program.GameFlagsByte = Settings.Default.GameFlagsByte;
         }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+
         {
-            // Save settings before closing
-            Settings.Default.profilesFolderPath = txtProfilesFolderPath.Text;
-            Settings.Default.modsFolderPath = txtModsFolderPath.Text;
-            Settings.Default.autoProfileCheckBox = autoProfilescheckBox.Checked;
-            Settings.Default.ChoosenGame = comboBoxGame.Text;
-            Settings.Default.ModOrganizer = comboBoxModOrganizer.Text;
+            Settings.Default.PathGameDirectory = txtPathGameDirectory.Text;
+            Settings.Default.PathProfilesDirectory = txtPathProfilesDirectory.Text;
+            Settings.Default.PathModsDirectory = txtPathModsDirectory.Text;
+            Settings.Default.ChoosenGame = comboBoxChoosenGame.Text;
             Settings.Default.GameFlagsByte = Program.GameFlagsByte;
+            Settings.Default.ModOrganizer = comboBoxModOrganizer.Text;
+            Settings.Default.CheckBoxAutoProfile = checkBoxAutoProfile.Checked;
             Settings.Default.Save();
         }
+
         private void btnExecute_Click(object sender, EventArgs e)
         {
             //Timer timer = new Timer();
+            if (txtPathGameDirectory.Text == "" || txtPathModsDirectory.Text == "" || txtPathProfilesDirectory.Text == "")
+            {
+                lblToastMessage.Text = "Fill data!";
+                lblToastMessage.Visible = true;
+                return;
+            }
+            if (checkBoxAutoProfile.Checked)
+            {
+                Utility.FindLatestModifiedProfileDirectory();
+                txtPathProfilesDirectory.Text = Program.PathPluginsTxtDirectory;
+            }
+            lblToastMessage.Text = "OK!";
             lblToastMessage.Visible = true;
             /*
             Utility.ReadFromPlugin();
@@ -66,7 +80,7 @@ namespace SkyrimBatApplication
                 string selectedPath = modsFolderBrowserDialog.SelectedPath;
 
                 // Wyœwietl œcie¿kê w TextBox
-                txtModsFolderPath.Text = selectedPath;
+                txtPathModsDirectory.Text = selectedPath;
             }
         }
 
@@ -78,7 +92,7 @@ namespace SkyrimBatApplication
                 string selectedPath = profilesFolderBrowserDialog.SelectedPath;
 
                 // Wyœwietl œcie¿kê w TextBox
-                txtProfilesFolderPath.Text = selectedPath;
+                txtPathProfilesDirectory.Text = selectedPath;
             }
         }
         private void btnGameSelectFolder_Click(object sender, EventArgs e)
@@ -89,7 +103,7 @@ namespace SkyrimBatApplication
                 string selectedPath = gameFolderBrowserDialog.SelectedPath;
 
                 // Wyœwietl œcie¿kê w TextBox
-                txtGameFolderPath.Text = selectedPath;
+                txtPathGameDirectory.Text = selectedPath;
             }
         }
 
@@ -100,8 +114,7 @@ namespace SkyrimBatApplication
 
         private void autoProfilecheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Utility.FindLatestModifiedProfileDirectory();
-            txtProfilesFolderPath.Text = Program.FoundPluginsTxtDirectoryPath;
+
         }
 
         private void txtProfileFolderPath_TextChanged(object sender, EventArgs e)
@@ -126,12 +139,12 @@ namespace SkyrimBatApplication
                     break;
             }
             Utility.FindProfileDirectory();
-            txtProfilesFolderPath.Text = Program.FoundPluginsTxtDirectoryPath;
+            txtPathProfilesDirectory.Text = Program.PathPluginsTxtDirectory;
         }
 
         private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBoxGame.Text)
+            switch (comboBoxChoosenGame.Text)
             {
                 case "Skyrim":
                     Program.ChoosenGame = "skyrim";
@@ -148,6 +161,9 @@ namespace SkyrimBatApplication
             }
         }
 
-
+        private void txtGameFolderPath_TextChanged(object sender, EventArgs e)
+        {
+            Program.PathGameDirectory = txtPathGameDirectory.Text;
+        }
     }
 }

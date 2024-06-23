@@ -13,8 +13,9 @@ namespace SkyrimBatApplication
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
-        public static string FoundPluginsTxtDirectoryPath = "";
-        public static string FoundDataDirectoryPath = "D:\\Games\\Mods\\MO2\\Skyrim Special Edition\\Mods\\";
+        public static string PathGameDirectory = "";
+        public static string PathPluginsTxtDirectory = "";
+        public static string PathModsDirectory = "D:\\Games\\Mods\\MO2\\Skyrim Special Edition\\Mods\\";
         public static string ModOrganizer = "";
         public static string ChoosenGame = "";
         public static int GameFlagsByte;
@@ -25,7 +26,7 @@ namespace SkyrimBatApplication
         }
         private static void ExecuteClassification()
         {
-            Utility.ClassifyPlugins(Utility.plugins, FoundDataDirectoryPath);
+            Utility.ClassifyPlugins(Utility.plugins, PathModsDirectory);
         }
     }
 }

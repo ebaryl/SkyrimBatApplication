@@ -26,36 +26,36 @@ namespace SkyrimBatManager {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string profilesFolderPath {
+        public string PathProfilesDirectory {
             get {
-                return ((string)(this["profilesFolderPath"]));
+                return ((string)(this["PathProfilesDirectory"]));
             }
             set {
-                this["profilesFolderPath"] = value;
+                this["PathProfilesDirectory"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool autoProfileCheckBox {
+        public bool CheckBoxAutoProfile {
             get {
-                return ((bool)(this["autoProfileCheckBox"]));
+                return ((bool)(this["CheckBoxAutoProfile"]));
             }
             set {
-                this["autoProfileCheckBox"] = value;
+                this["CheckBoxAutoProfile"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string modsFolderPath {
+        public string PathModsDirectory {
             get {
-                return ((string)(this["modsFolderPath"]));
+                return ((string)(this["PathModsDirectory"]));
             }
             set {
-                this["modsFolderPath"] = value;
+                this["PathModsDirectory"] = value;
             }
         }
         
@@ -92,6 +92,18 @@ namespace SkyrimBatManager {
             }
             set {
                 this["GameFlagsByte"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathGameDirectory {
+            get {
+                return ((string)(this["PathGameDirectory"]));
+            }
+            set {
+                this["PathGameDirectory"] = value;
             }
         }
     }
