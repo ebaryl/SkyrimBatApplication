@@ -13,10 +13,10 @@ namespace SkyrimBatApplication
         public Form1()
         {
             InitializeComponent();
+            pictureBoxBat.SendToBack();
+            //System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
             tooltipAutoProfile();
-
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,12 +34,17 @@ namespace SkyrimBatApplication
             Program.PathPluginsTxtFile = Settings.Default.PathPluginsTxtFile;
 
             Program.ChoosenGame = Settings.Default.ChoosenGame;
-            comboBoxChoosenGame.Text = Settings.Default.ChoosenGame;
+            lblChoosenGame.Text = Settings.Default.ChoosenGame;
 
             Program.ModOrganizer = Settings.Default.ModOrganizer;
-            comboBoxModOrganizer.Text = Settings.Default.ModOrganizer;
+            lblModOrganizer.Text = Settings.Default.ModOrganizer;
 
             Program.GameFlagsByte = Settings.Default.GameFlagsByte;
+
+            if (Program.PathModsDirectory == "" || Program.PathProfileDirectory == "")
+            {
+                autoPath();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -49,10 +54,27 @@ namespace SkyrimBatApplication
             Settings.Default.PathProfileDirectory = txtPathProfileDirectory.Text;
             Settings.Default.CheckBoxAutoProfile = checkBoxAutoProfile.Checked;
             Settings.Default.PathModsDirectory = txtPathModsDirectory.Text;
-            Settings.Default.ChoosenGame = comboBoxChoosenGame.Text;
-            Settings.Default.ModOrganizer = comboBoxModOrganizer.Text;
+            Settings.Default.PathPluginsTxtFile = Program.PathPluginsTxtFile;
+            Settings.Default.ChoosenGame = Program.ChoosenGame;
+            Settings.Default.ModOrganizer = Program.ModOrganizer;
             Settings.Default.GameFlagsByte = Program.GameFlagsByte;
             Settings.Default.Save();
+        }
+
+        private void autoPath()
+        {
+            bool foundModOrganizer = Utility.IdentifyModOrganizerFromModsStagingFolder();
+            if (foundModOrganizer)
+            {
+                lblModOrganizer.Text = Program.ModOrganizer;
+                Utility.FindProfileDirectory(); 
+                txtPathProfileDirectory.Text = Program.PathProfileDirectory;
+            }
+            //else { txtPathProfileDirectory.Text = "!!! profile directory not found !!!"; }
+
+            bool foundModsPath = Utility.FindModsDirectory();
+            if (foundModsPath) { txtPathModsDirectory.Text = Program.PathModsDirectory; }
+            //else { txtPathModsDirectory.Text = "!!! mods directory not found !!!"; }
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -61,22 +83,24 @@ namespace SkyrimBatApplication
             if (txtPathGameDirectory.Text == "" || txtPathModsDirectory.Text == "" || txtPathProfileDirectory.Text == "")
             {
                 lblToastMessage.Text = "Fill data!";
+                lblToastMessage.ForeColor = Color.Red;
                 lblToastMessage.Visible = true;
                 return;
             }
             if (checkBoxAutoProfile.Checked)
             {
                 Utility.FindLatestModifiedProfileDirectory();
-                txtPathProfileDirectory.Text = Program.PathPluginsTxtFile;
+                txtPathProfileDirectory.Text = Program.PathProfileDirectory;
             }
-            lblToastMessage.Text = "OK!";
-            lblToastMessage.Visible = true;
-            /*
+            
             Utility.ReadFromPlugin();
-            Utility.ClassifyPlugins(Utility.plugins, Program.foundDataDirectoryPath);
+            Utility.ClassifyPlugins(Utility.plugins, Program.PathModsDirectory);
             Utility.SortPluginsAfterClassification(Utility.plugins);
             MyRegex.ReadAllTxtFiles();
-            */
+
+            lblToastMessage.Text = "DONE!";
+            lblToastMessage.Visible = true;
+            lblToastMessage.ForeColor = Color.LightGreen;
         }
 
         private void lblToastMessage_Click(object sender, EventArgs e)
@@ -130,7 +154,7 @@ namespace SkyrimBatApplication
                     txtPathProfileDirectory.Text = "!!! profile folder should contain plugins.txt !!!";
                     return; 
                 }
-                Utility.RecognizeModOrganizer();
+                Utility.IdentifyModOrganizerFromBrowser();
                 lblModOrganizer.Visible = true;
                 lblModOrganizer.Text = Program.ModOrganizer;
             }
@@ -149,40 +173,6 @@ namespace SkyrimBatApplication
         private void txtPathProfileDirectory_TextChanged(object sender, EventArgs e)
         {
             Program.PathProfileDirectory = txtPathProfileDirectory.Text;
-        }
-
-        private void comboBoxModOrganizer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBoxModOrganizer.Text)
-            {
-                case "Mod Organizer":
-                    Program.ModOrganizer = "Mod Organizer";
-                    break;
-                case "Vortex":
-                    Program.ModOrganizer = "Vortex";
-                    break;
-            }
-            Utility.FindProfileDirectory();
-            txtPathProfileDirectory.Text = Program.PathPluginsTxtFile;
-        }
-
-        private void comboBoxChoosenGame_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBoxChoosenGame.Text)
-            {
-                case "Skyrim":
-                    Program.ChoosenGame = "skyrim";
-                    Program.GameFlagsByte = 0x02;
-                    break;
-                case "Skyrim SE":
-                    Program.ChoosenGame = "skyrimse";
-                    Program.GameFlagsByte = 0x02;
-                    break;
-                case "Fallout":
-                    Program.ChoosenGame = "fallout";
-                    Program.GameFlagsByte = 0x04;
-                    break;
-            }
         }
 
         private void txtGameFolderPath_TextChanged(object sender, EventArgs e)

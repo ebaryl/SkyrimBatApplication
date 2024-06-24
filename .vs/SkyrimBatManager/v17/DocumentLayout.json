@@ -7,28 +7,24 @@
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\skyrimbatapplication\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\regex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\regex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\utility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\utility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\form1.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\form1.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\jakmadzaialac.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\jakmadzaialac.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\skyrimbatapplication\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
-      "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,69 +34,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "SkyrimBatApplication\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.Designer.cs",
-              "RelativeToolTip": "SkyrimBatApplication\\Form1.Designer.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBAAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T18:24:59.507Z",
+              "DocumentIndex": 4,
+              "Title": "Form1.resx",
+              "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.resx",
+              "RelativeDocumentMoniker": "SkyrimBatApplication\\Form1.resx",
+              "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.resx",
+              "RelativeToolTip": "SkyrimBatApplication\\Form1.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-24T19:11:05.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "JakMaDzaialac.txt",
-              "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\JakMaDzaialac.txt",
-              "RelativeDocumentMoniker": "SkyrimBatApplication\\JakMaDzaialac.txt",
-              "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\JakMaDzaialac.txt",
-              "RelativeToolTip": "SkyrimBatApplication\\JakMaDzaialac.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-06-22T23:08:06.86Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Settings.settings",
-              "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Settings.settings",
-              "RelativeDocumentMoniker": "SkyrimBatApplication\\Settings.settings",
-              "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Settings.settings",
-              "RelativeToolTip": "SkyrimBatApplication\\Settings.settings",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
-              "WhenOpened": "2024-06-22T14:16:28.373Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Regex.cs",
+              "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Regex.cs",
+              "RelativeDocumentMoniker": "SkyrimBatApplication\\Regex.cs",
+              "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Regex.cs",
+              "RelativeToolTip": "SkyrimBatApplication\\Regex.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T11:07:25.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Utility.cs",
               "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Utility.cs",
               "RelativeDocumentMoniker": "SkyrimBatApplication\\Utility.cs",
               "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Utility.cs",
               "RelativeToolTip": "SkyrimBatApplication\\Utility.cs",
-              "ViewState": "AQIAAF8AAAAAAAAAAAAowHIAAAAUAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAYwBcAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-22T11:37:14.602Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Program.cs",
               "RelativeDocumentMoniker": "SkyrimBatApplication\\Program.cs",
               "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Program.cs",
               "RelativeToolTip": "SkyrimBatApplication\\Program.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAmwBEAAAA3AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T11:20:52.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T11:20:52.185Z"
             },
             {
               "$type": "Document",
@@ -110,7 +94,7 @@
               "RelativeDocumentMoniker": "SkyrimBatApplication\\Form1.cs",
               "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.cs",
               "RelativeToolTip": "SkyrimBatApplication\\Form1.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAiwHEAAAANAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-21T02:44:06.964Z",
               "EditorCaption": ""

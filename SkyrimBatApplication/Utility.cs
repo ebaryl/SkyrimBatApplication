@@ -22,7 +22,6 @@ namespace SkyrimBatApplication
                     {
                         Name = pluginName,
                         LoadOrder = order++,
-                        //IsLight = false // czy powinno byc jakies default value?? najlpeije null zeby bylo wiadomo jesli cos sie nie dodalo
                     });
                 }
             }
@@ -55,30 +54,24 @@ namespace SkyrimBatApplication
             {
                 string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
 
-                string testDirectory = "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\";
-                parentDirectory = Directory.GetParent(testDirectory).FullName;
+                //string testDirectory = "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\";
+                //parentDirectory = Directory.GetParent(testDirectory).FullName;
 
-                if (parentDirectory == null)
-                {
-                    //LOG
-                    return;
-                }
+                if (parentDirectory == null) { return; }
+
                 profilesDirectory = Path.Combine(parentDirectory, "profiles");
-                if (!Directory.Exists(profilesDirectory))
-                {
-                    //LOG
-                    return;
-                }
+                if (!Directory.Exists(profilesDirectory)) { return; }
+
+                Program.PathProfileDirectory = profilesDirectory;
             }
             else if (Program.ModOrganizer == "Vortex")
             {
-                // NIE WIEM JAK ZNALEZC FOLDER
                 string appDataRoamingPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 profilesDirectory = Path.Combine(appDataRoamingPath, "Roaming", Program.ChoosenGame, "profiles");
 
                 if (!Path.Exists(profilesDirectory)) { return; }
 
-
+                Program.PathProfileDirectory = profilesDirectory;
             }
             var directories = Directory.GetDirectories(profilesDirectory);
 
@@ -94,7 +87,16 @@ namespace SkyrimBatApplication
             else
             {
                 return;
-                //Console.WriteLine("No profiles found.");
+            }
+        }
+
+        public static bool FindModsDirectory()
+        {
+            if (Program.ModOrganizer == null) { return false; }
+            else
+            {
+                Program.PathModsDirectory = Directory.GetCurrentDirectory();
+                return true;
             }
         }
         public static bool IdentifyGame()
@@ -102,49 +104,25 @@ namespace SkyrimBatApplication
             if (File.Exists(Path.Combine(Program.PathGameDirectory, "TESV.exe")))
             {
                 Program.ChoosenGame = "skyrim";
+                Program.GameFlagsByte = 0x02;
                 return true;
             }
             else if (File.Exists(Path.Combine(Program.PathGameDirectory, "SkyrimSE.exe")))
             {
                 Program.ChoosenGame = "skyrimse";
+                Program.GameFlagsByte = 0x02;
                 return true;
             }
             else if (File.Exists(Path.Combine(Program.PathGameDirectory, "Fallout4.exe")))
             {
                 Program.ChoosenGame = "fallout";
+                Program.GameFlagsByte = 0x04;
                 return true;
             }
 
             return false;
-            /*
-            if (!Directory.Exists(Program.PathGameDirectory))
-            {
-                throw new DirectoryNotFoundException("The specified folder does not exist.");
-            }
-
-            Dictionary<string, string> dictionary = new Dictionary<string, string>()
-            {
-                { "TESV.exe", "Skyrim"},
-                { "SkyrimSE.exe", "Skyrim SE"},
-                { "Fallout4.exe",  "Fallout 4"}
-            };
-
-            string[] executableNames = { "TESV.exe", "SkyrimSE.exe", "Fallout4.exe" };
-            string[] gameNames = { "Skyrim", "Skyrim SE", "Fallout 4" };
-
-            for (int i = 0; i < executableNames.Length; i++)
-            {
-                if (File.Exists(Path.Combine(Program.PathGameDirectory, executableNames[i])))
-                {
-                    //return gameNames[i];
-                    Program.ChoosenGame = gameNames[i];
-                }
-            }
-            */
-
-            //throw new FileNotFoundException("No recognized game executable found in the specified folder.");
         }
-        public static void RecognizeModOrganizer()
+        public static void IdentifyModOrganizerFromBrowser()
         {
             var lines = File.ReadAllLines(Program.PathPluginsTxtFile);
             var firstLine = lines[0];
@@ -155,6 +133,27 @@ namespace SkyrimBatApplication
             else if (firstLine.Contains("Vortex", StringComparison.OrdinalIgnoreCase))
             {
                 Program.ModOrganizer = "Vortex";
+            }
+            //
+        }
+        public static bool IdentifyModOrganizerFromModsStagingFolder()
+        {
+            if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "__vortex_staging_folder")))
+            {
+                Program.ModOrganizer = "Vortex";
+                return true;
+            }
+            else
+            {
+                string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
+                if (Directory.Exists(Path.Combine(parentDirectory, "profiles")) &&
+                    Directory.Exists(Path.Combine(parentDirectory, "overwrite")) &&
+                    Directory.Exists(Path.Combine(parentDirectory, "mods")))
+                {
+                    Program.ModOrganizer = "Mod Organizer";
+                    return true;
+                }
+                else { return false; }
             }
         }
 
@@ -178,7 +177,6 @@ namespace SkyrimBatApplication
             else
             {
                 return;
-                //Console.WriteLine("No profiles found.");
             }
 
         }
@@ -196,8 +194,6 @@ namespace SkyrimBatApplication
 
                 byte flagsByte = header[9];
                 bool isLight = (flagsByte & Program.GameFlagsByte) != 0;
-                //Console.WriteLine("             FLAGBYTE:" + flagsByte);
-                //Console.WriteLine("LIGHT" + isLight);
                 return isLight;
             }
         }
@@ -213,11 +209,8 @@ namespace SkyrimBatApplication
                     string pluginPath = Path.Combine(dir, plugin.Name);
                     if (File.Exists(pluginPath))
                     {
-                        //znajdz ten plugin z obiektow klasy
-                        //var searchedPlugin = Utility.plugins.FirstOrDefault(p => p.Name == plugin.Name);
-                        //searchedPlugin.IsLight = LightFlagCheck(pluginPath);
                         plugin.IsLight = LightFlagCheck(pluginPath);
-                        break; // Exit the loop once the plugin is found
+                        break;
                     }
                 }
             }

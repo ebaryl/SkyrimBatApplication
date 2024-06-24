@@ -5,3 +5,10 @@ zasygnalizowac jakoœ przez pó³ sekundy ¿e trwa robienie kodu
 
 Mod organizer profile folder with plugin.txt
 Mod staging folder
+
+///
+Po³o¿enie mod foldera zna
+mod organizer wybieraæ przez __vortex_staging_folder
+
+jeœli to vortex to do appdata
+jeœli to mod organizer to wystarczy sie cofn¹æ

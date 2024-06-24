@@ -1,0 +1,6 @@
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.exe
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.dll
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.deps.json
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.runtimeconfig.json
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.dll.config
+C:\Users\Bartosz\VSProjects\repos\SkyrimBatApplication\SkyrimBatApplication\bin\Release\net8.0-windows\publish\SkyrimBatManager.pdb

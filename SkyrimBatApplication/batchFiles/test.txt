@@ -1,30 +1,30 @@
+;#Bat Organizer
+
 ;Unofficial SSE Patch#Unofficial Skyrim Special Edition Patch
 0F09CD51
+0F09CD52
+
 ;Storm Calling#StormCalling
-04A9E2A8
+04A9CD51
+04A9CD52
+
 ;#MysticismMagic
-2509E2AF
+2509CD51
+2509CD52
+
 ;#Dawnguard
-44003F4D
+0009CD51
+0009CD52
+
 ;asdasd#Dragonborn
-550177AC
+0009CD51
+0009CD52
+
 
 
 ;#Apocalypse - Magic of Skyrim
 player.additem 3003C517 1
 player.additem 3009CD52 1
 player.additem 3003C519 1
-3003C51A
-30177ADA 1
-300177B5 1
+3009CD51
 3009CD52
-3009CD53
-30003F4E 1
-30003F51
-300A26E2
-300A26E7
-3010F7F5 1
-3010FD60
-3009E2A9
-3009E2AA 1
-3009E2AD
