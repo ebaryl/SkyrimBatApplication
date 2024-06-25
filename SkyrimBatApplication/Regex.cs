@@ -15,11 +15,11 @@ public class MyRegex()
         }
 
         string[] txtFiles = Directory.GetFiles(currentDirectory, "*.txt", SearchOption.AllDirectories)
-                            .Where(file => !file.Split(Path.DirectorySeparatorChar)
-                            .Any(dir => dir.Equals("backup", StringComparison.OrdinalIgnoreCase)))
-                            .ToArray();
+                    .Where(file => !file.Split(Path.DirectorySeparatorChar)
+                    .Any(dir => Program.foldersToSkip.Contains(dir, StringComparer.OrdinalIgnoreCase)))
+                    .ToArray();
 
-        Plugin searchedPlugin = null;
+        Plugin searchedPlugin = new Plugin();
         Regex hexRegex = new Regex(@"^[0-9A-F]{8}$");
 
         foreach (string file in txtFiles)
@@ -31,8 +31,6 @@ public class MyRegex()
 
             foreach (string line in lines)
             {
-                
-
                 if (line.StartsWith(";"))
                 {
                     modifiedLines.Add(line);
@@ -43,7 +41,7 @@ public class MyRegex()
                     {
                         pluginName = pluginName.Split('#')[1];
                         //[..^4] no last 4 chars
-                        searchedPlugin = Utility.plugins.FirstOrDefault(p => string.Equals(p.Name[..^4], pluginName, StringComparison.OrdinalIgnoreCase));
+                        searchedPlugin = Utility.plugins.FirstOrDefault(p => string.Equals(p.Name[..^4], pluginName, StringComparison.OrdinalIgnoreCase))!;
                         if (searchedPlugin != null)
                         {
                             continue;
@@ -83,19 +81,16 @@ public class MyRegex()
 
         // Get all .txt files from the source directory
         // Copy each .txt file to the destination directory
-        
+
         foreach (string file in txtFiles)
         {
-            // Get the file name
             string fileName = Path.GetFileName(file);
-
-            // Define the destination file path
-            string destFilePath = Path.Combine(Directory.GetParent(currentDirectory).FullName, fileName);
-
-            // Copy the file
-            File.Copy(file, destFilePath, true); // true to overwrite if the file already exists
+            string destFilePath = Path.Combine(Directory.GetParent(currentDirectory)!.FullName, fileName);
+            File.Copy(file, destFilePath, true);
         }
-        
+        // checkbox     to check bats from mods
+
+
 
     }
 

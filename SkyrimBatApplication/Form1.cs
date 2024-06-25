@@ -40,6 +40,7 @@ namespace SkyrimBatApplication
             lblModOrganizer.Text = Settings.Default.ModOrganizer;
 
             Program.GameFlagsByte = Settings.Default.GameFlagsByte;
+            Settings.Default.Save();
 
             if (Program.PathModsDirectory == "" || Program.PathProfileDirectory == "")
             {
@@ -67,7 +68,7 @@ namespace SkyrimBatApplication
             if (foundModOrganizer)
             {
                 lblModOrganizer.Text = Program.ModOrganizer;
-                Utility.FindProfileDirectory(); 
+                Utility.FindProfileDirectory();
                 txtPathProfileDirectory.Text = Program.PathProfileDirectory;
             }
             //else { txtPathProfileDirectory.Text = "!!! profile directory not found !!!"; }
@@ -82,7 +83,7 @@ namespace SkyrimBatApplication
             //Timer timer = new Timer();
             if (txtPathGameDirectory.Text == "" || txtPathModsDirectory.Text == "" || txtPathProfileDirectory.Text == "")
             {
-                lblToastMessage.Text = "Fill data!";
+                lblToastMessage.Text = "FILL DATA!";
                 lblToastMessage.ForeColor = Color.Red;
                 lblToastMessage.Visible = true;
                 return;
@@ -92,7 +93,7 @@ namespace SkyrimBatApplication
                 Utility.FindLatestModifiedProfileDirectory();
                 txtPathProfileDirectory.Text = Program.PathProfileDirectory;
             }
-            
+
             Utility.ReadFromPlugin();
             Utility.ClassifyPlugins(Utility.plugins, Program.PathModsDirectory);
             Utility.SortPluginsAfterClassification(Utility.plugins);
@@ -123,6 +124,7 @@ namespace SkyrimBatApplication
                 lblChoosenGame.Text = Program.ChoosenGame;
                 lblChoosenGame.Visible = true;
             }
+            UpdatelblToastMessage();
         }
 
         private void btnModsSelectFolder_Click(object sender, EventArgs e)
@@ -131,11 +133,15 @@ namespace SkyrimBatApplication
             {
                 // Pobierz wybran¹ œcie¿kê
                 string selectedPath = modsFolderBrowserDialog.SelectedPath;
+                 if (!Utility.CheckForPluginsInside(selectedPath)) {
+                    MessageBox.Show("Mods not found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 }
 
                 // Wyœwietl œcie¿kê w TextBox
                 txtPathModsDirectory.Text = selectedPath;
                 Program.PathModsDirectory = selectedPath;
             }
+            UpdatelblToastMessage();
         }
 
         private void btnProfileSelectFolder_Click(object sender, EventArgs e)
@@ -152,12 +158,23 @@ namespace SkyrimBatApplication
                 if (!File.Exists(Program.PathPluginsTxtFile))
                 {
                     txtPathProfileDirectory.Text = "!!! profile folder should contain plugins.txt !!!";
-                    return; 
+                    return;
                 }
                 Utility.IdentifyModOrganizerFromBrowser();
                 lblModOrganizer.Visible = true;
                 lblModOrganizer.Text = Program.ModOrganizer;
             }
+            UpdatelblToastMessage();
+        }
+
+        private void UpdatelblToastMessage()
+        {
+            if (lblToastMessage.Visible == true && Directory.Exists(txtPathGameDirectory.Text) &&
+                Directory.Exists(txtPathModsDirectory.Text) && Directory.Exists(txtPathProfileDirectory.Text))
+            {
+                { lblToastMessage.Visible = false; }
+            }
+
         }
 
         private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
@@ -170,14 +187,19 @@ namespace SkyrimBatApplication
 
         }
 
+        private void txtPathGameFolder_TextChanged(object sender, EventArgs e)
+        {
+            Program.PathGameDirectory = txtPathGameDirectory.Text;
+        }
+
+        private void txtPathModsDirectory_TextChanged(object sender, EventArgs e)
+        {
+            Program.PathModsDirectory = txtPathModsDirectory.Text;
+        }
+
         private void txtPathProfileDirectory_TextChanged(object sender, EventArgs e)
         {
             Program.PathProfileDirectory = txtPathProfileDirectory.Text;
-        }
-
-        private void txtGameFolderPath_TextChanged(object sender, EventArgs e)
-        {
-            Program.PathGameDirectory = txtPathGameDirectory.Text;
         }
 
         private void tooltipAutoProfile()

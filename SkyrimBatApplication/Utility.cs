@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SkyrimBatApplication
 {
@@ -54,9 +55,6 @@ namespace SkyrimBatApplication
             {
                 string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
 
-                //string testDirectory = "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\";
-                //parentDirectory = Directory.GetParent(testDirectory).FullName;
-
                 if (parentDirectory == null) { return; }
 
                 profilesDirectory = Path.Combine(parentDirectory, "profiles");
@@ -95,10 +93,28 @@ namespace SkyrimBatApplication
             if (Program.ModOrganizer == null) { return false; }
             else
             {
-                Program.PathModsDirectory = Directory.GetCurrentDirectory();
-                return true;
+                string currentDirectory = Directory.GetCurrentDirectory();
+                if (CheckForPluginsInside(currentDirectory))
+                {   Program.PathModsDirectory = currentDirectory;
+                    return true;
+                }
+                else { return false; }
             }
         }
+
+        public static bool CheckForPluginsInside(string startDirectory)
+        {
+            string currentDirectory = startDirectory;
+
+            string[] files = Directory.GetFiles(currentDirectory, "*.es[pml]", SearchOption.TopDirectoryOnly);
+
+            if (files.Length > 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
         public static bool IdentifyGame()
         {
             if (File.Exists(Path.Combine(Program.PathGameDirectory, "TESV.exe")))
@@ -146,7 +162,8 @@ namespace SkyrimBatApplication
             else
             {
                 string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
-                if (Directory.Exists(Path.Combine(parentDirectory, "profiles")) &&
+                if (parentDirectory != null &&
+                    Directory.Exists(Path.Combine(parentDirectory, "profiles")) &&
                     Directory.Exists(Path.Combine(parentDirectory, "overwrite")) &&
                     Directory.Exists(Path.Combine(parentDirectory, "mods")))
                 {
@@ -154,6 +171,33 @@ namespace SkyrimBatApplication
                     return true;
                 }
                 else { return false; }
+            }
+        }
+
+        // NOT USED, GOAL WAS TO FIND BATS FROM MODS FOLDER
+        public static void TxtMoveToDirectory(string directoryPath)
+        {
+            Regex hexRegex = new Regex(@"^[0-9A-F]{8}$");
+            string[] files = Directory.GetFiles(directoryPath, "*.txt", SearchOption.TopDirectoryOnly);
+
+            foreach (string file in files)
+            {
+                string[] lines = File.ReadAllLines(file);
+                foreach (string line in lines)
+                {
+                    var words = line.Split(' ');
+                    foreach (string word in words)
+                    {
+                        if (word.Length == 8 && hexRegex.IsMatch(word))
+                        {
+                            string fileName = Path.GetFileName(file);
+                            string directoryForBatsFromMods = Path.Combine(Directory.GetCurrentDirectory(), "mods");
+                            string destFilePath = Path.Combine(directoryForBatsFromMods, fileName);
+                            // Copy the file
+                            File.Copy(file, destFilePath, true);
+                        }
+                    }
+                }
             }
         }
 

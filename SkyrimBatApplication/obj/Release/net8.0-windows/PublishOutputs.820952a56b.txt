@@ -1,0 +1,6 @@
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.exe
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.dll
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.deps.json
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.runtimeconfig.json
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.dll.config
+C:\Users\Bartosz\Downloads\BatManager\SkyrimBatManager.pdb

@@ -109,6 +109,7 @@
             txtPathModsDirectory.PlaceholderText = "Mods Folder";
             txtPathModsDirectory.Size = new Size(324, 28);
             txtPathModsDirectory.TabIndex = 4;
+            txtPathModsDirectory.TextChanged += txtPathModsDirectory_TextChanged;
             // 
             // txtPathProfileDirectory
             // 
@@ -189,7 +190,7 @@
             txtPathGameDirectory.PlaceholderText = "Game Folder";
             txtPathGameDirectory.Size = new Size(324, 28);
             txtPathGameDirectory.TabIndex = 15;
-            txtPathGameDirectory.TextChanged += txtGameFolderPath_TextChanged;
+            txtPathGameDirectory.TextChanged += txtPathGameFolder_TextChanged;
             // 
             // btnGameSelectFolder
             // 
@@ -309,7 +310,8 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bat Manager";
-            Load += Form1_Load;
+            Load += Form1_Load; // ADDED BY ME
+            FormClosing += Form1_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBoxBat).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -20,15 +20,7 @@ namespace SkyrimBatApplication
         public static string ChoosenGame = "";
         public static string ModOrganizer = "";
         public static int GameFlagsByte;
-        public static bool testMode = true;
-
-        private static void ExecuteOrderCheck()
-        {
-            Utility.ReadFromPlugin();
-        }
-        private static void ExecuteClassification()
-        {
-            Utility.ClassifyPlugins(Utility.plugins, PathModsDirectory);
-        }
+        public static bool testMode = false;
+        public static List<string> foldersToSkip = new List<string> { "backup", "mods" };
     }
 }
