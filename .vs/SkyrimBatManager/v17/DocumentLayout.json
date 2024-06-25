@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\plugin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|c:\\users\\bartosz\\vsprojects\\repos\\skyrimbatapplication\\skyrimbatapplication\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "AbsoluteMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\skyrimbatapplication\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
       "RelativeMoniker": "D:0:0:{4805F0D2-37F5-41BA-9AE9-F4195F215D3E}|SkyrimBatApplication\\SkyrimBatManager.csproj|solutionrelative:skyrimbatapplication\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
@@ -64,8 +64,7 @@
               "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Properties\\Resources.resx",
               "RelativeToolTip": "SkyrimBatApplication\\Properties\\Resources.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-06-25T17:11:15.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T17:11:15.337Z"
             },
             {
               "$type": "Document",
@@ -77,8 +76,7 @@
               "RelativeToolTip": "SkyrimBatApplication\\Properties\\Resources.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T17:11:12.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T17:11:12.205Z"
             },
             {
               "$type": "Document",
@@ -102,8 +100,7 @@
               "RelativeToolTip": "SkyrimBatApplication\\Regex.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAFEAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T16:54:27.877Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:54:27.877Z"
             },
             {
               "$type": "Document",
@@ -128,8 +125,7 @@
               "RelativeToolTip": "SkyrimBatApplication\\Plugin.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T16:54:22.463Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:54:22.463Z"
             },
             {
               "$type": "Document",
@@ -141,8 +137,7 @@
               "RelativeToolTip": "SkyrimBatApplication\\Properties\\Resources.resx",
               "ViewState": "AQIAAAAAAAAAAAAAAAAswHcAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-06-25T16:14:39.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:14:39.619Z"
             },
             {
               "$type": "Document",
@@ -154,8 +149,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AQIAADQNAAAAAAAAAAAmwEUNAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2024-06-25T16:14:34.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:14:34.917Z"
             },
             {
               "$type": "Document",
@@ -167,8 +161,7 @@
               "RelativeToolTip": "SkyrimBatApplication\\Form1.Designer.cs",
               "ViewState": "AQIAACcBAAAAAAAAAAAswDUBAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T15:52:07.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T15:52:07.952Z"
             },
             {
               "$type": "Document",
@@ -192,8 +185,7 @@
               "ToolTip": "C:\\Users\\Bartosz\\VSProjects\\repos\\SkyrimBatApplication\\SkyrimBatApplication\\Form1.cs [Design]",
               "RelativeToolTip": "SkyrimBatApplication\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T11:13:59.013Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-06-21T11:13:59.013Z"
             }
           ]
         }
