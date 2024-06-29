@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SkyrimBatManager {
+namespace Bat_Manager {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

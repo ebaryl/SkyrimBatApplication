@@ -41,7 +41,7 @@
             checkBoxAutoProfile = new CheckBox();
             lblGame = new Label();
             lblOrganizer = new Label();
-            timer1 = new System.Windows.Forms.Timer(components);
+            timerlblToastMessage = new System.Windows.Forms.Timer(components);
             txtPathGameDirectory = new TextBox();
             btnGameSelectFolder = new Button();
             gameFolderBrowserDialog = new FolderBrowserDialog();
@@ -51,6 +51,7 @@
             lblGameDirectory = new Label();
             lblModsDirectory = new Label();
             lblProfileDirectory = new Label();
+            btnBatchFiles = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBat).BeginInit();
             SuspendLayout();
             // 
@@ -69,10 +70,6 @@
             btnExecute.UseVisualStyleBackColor = true;
             btnExecute.Click += btnExecute_Click;
             // 
-            // modsFolderBrowserDialog
-            // 
-            modsFolderBrowserDialog.HelpRequest += folderBrowserDialog1_HelpRequest;
-            // 
             // lblToastMessage
             // 
             lblToastMessage.AutoSize = true;
@@ -85,7 +82,6 @@
             lblToastMessage.TabIndex = 1;
             lblToastMessage.Text = "DONE!";
             lblToastMessage.Visible = false;
-            lblToastMessage.Click += lblToastMessage_Click;
             // 
             // btnModsSelectFolder
             // 
@@ -118,7 +114,7 @@
             txtPathProfileDirectory.Location = new Point(92, 305);
             txtPathProfileDirectory.Margin = new Padding(3, 4, 3, 4);
             txtPathProfileDirectory.Name = "txtPathProfileDirectory";
-            txtPathProfileDirectory.PlaceholderText = "Organizer Profile With plugins.txt Inside";
+            txtPathProfileDirectory.PlaceholderText = "Organizer Profile Folder With plugins.txt";
             txtPathProfileDirectory.Size = new Size(324, 28);
             txtPathProfileDirectory.TabIndex = 7;
             txtPathProfileDirectory.TextChanged += txtPathProfileDirectory_TextChanged;
@@ -151,7 +147,6 @@
             checkBoxAutoProfile.Text = "Detect profile change";
             checkBoxAutoProfile.TextAlign = ContentAlignment.MiddleCenter;
             checkBoxAutoProfile.UseVisualStyleBackColor = false;
-            checkBoxAutoProfile.CheckedChanged += checkBoxAutoProfile_CheckedChanged;
             // 
             // lblGame
             // 
@@ -178,6 +173,11 @@
             lblOrganizer.TabIndex = 11;
             lblOrganizer.Text = "Organizer:";
             lblOrganizer.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // timerlblToastMessage
+            // 
+            timerlblToastMessage.Interval = 5000;
+            timerlblToastMessage.Tick += timerlblToastMessage_Tick;
             // 
             // txtPathGameDirectory
             // 
@@ -278,6 +278,18 @@
             lblProfileDirectory.Text = "Profile";
             lblProfileDirectory.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnBatchFiles
+            // 
+            btnBatchFiles.BackColor = SystemColors.Info;
+            btnBatchFiles.Location = new Point(350, 198);
+            btnBatchFiles.Margin = new Padding(3, 4, 3, 4);
+            btnBatchFiles.Name = "btnBatchFiles";
+            btnBatchFiles.Size = new Size(134, 27);
+            btnBatchFiles.TabIndex = 23;
+            btnBatchFiles.Text = "Batch Files Folder";
+            btnBatchFiles.UseVisualStyleBackColor = false;
+            btnBatchFiles.Click += btnMyBatchFiles_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -286,6 +298,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(506, 409);
+            Controls.Add(btnBatchFiles);
             Controls.Add(lblProfileDirectory);
             Controls.Add(lblModsDirectory);
             Controls.Add(lblGameDirectory);
@@ -310,8 +323,8 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bat Manager";
-            Load += Form1_Load; // ADDED BY ME
             FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxBat).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -330,7 +343,7 @@
         private CheckBox checkBoxAutoProfile;
         private Label lblGame;
         private Label lblOrganizer;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerlblToastMessage;
         private TextBox txtPathGameDirectory;
         private Button btnGameSelectFolder;
         private FolderBrowserDialog gameFolderBrowserDialog;
@@ -340,5 +353,6 @@
         private Label lblGameDirectory;
         private Label lblModsDirectory;
         private Label lblProfileDirectory;
+        private Button btnBatchFiles;
     }
 }

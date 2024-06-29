@@ -1,23 +1,21 @@
 ﻿using SkyrimBatApplication;
+using Bat_Manager;
 using System;
 using System.Diagnostics.Tracing;
 using System.Text.RegularExpressions;
 
 public class MyRegex()
 {
-    public static void ReadAllTxtFiles()
+    public static void RegexUpdateIndexes()
     {
-        string currentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "_batchFiles");
+        string currentDirectory = Path.Combine(Directory.GetCurrentDirectory().GetParentDirectory(1), "batchFiles");
         // TEST
         if (Program.testMode) {
-            currentDirectory = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\..\"));
+            currentDirectory = currentDirectory.GetParentDirectory(4);
             currentDirectory = Path.Combine(currentDirectory, "batchFiles" ,"_batchfiles");
         }
 
-        string[] txtFiles = Directory.GetFiles(currentDirectory, "*.txt", SearchOption.AllDirectories)
-                    .Where(file => !file.Split(Path.DirectorySeparatorChar)
-                    .Any(dir => Program.foldersToSkip.Contains(dir, StringComparer.OrdinalIgnoreCase)))
-                    .ToArray();
+        string[] txtFiles = Directory.GetFiles(currentDirectory, "*.txt", SearchOption.AllDirectories);
 
         Plugin searchedPlugin = new Plugin();
         Regex hexRegex = new Regex(@"^[0-9A-F]{8}$");
@@ -85,7 +83,7 @@ public class MyRegex()
         foreach (string file in txtFiles)
         {
             string fileName = Path.GetFileName(file);
-            string destFilePath = Path.Combine(Directory.GetParent(currentDirectory)!.FullName, fileName);
+            string destFilePath = Path.Combine(Program.PathGameDirectory, "data", fileName);
             File.Copy(file, destFilePath, true);
         }
         // checkbox     to check bats from mods

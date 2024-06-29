@@ -21,6 +21,6 @@ namespace SkyrimBatApplication
         public static string ModOrganizer = "";
         public static int GameFlagsByte;
         public static bool testMode = false;
-        public static List<string> foldersToSkip = new List<string> { "backup", "mods" };
+        public static List<string> foldersToSkip = new List<string> { "backup" };
     }
 }
