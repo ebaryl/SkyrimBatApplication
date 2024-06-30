@@ -118,5 +118,17 @@ namespace Bat_Manager {
                 this["PathPluginsTxtFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathLoadOrderTxtFile {
+            get {
+                return ((string)(this["PathLoadOrderTxtFile"]));
+            }
+            set {
+                this["PathLoadOrderTxtFile"] = value;
+            }
+        }
     }
 }

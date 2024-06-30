@@ -17,6 +17,7 @@ namespace SkyrimBatApplication
         public static string PathModsDirectory = "";
         public static string PathProfileDirectory = "";
         public static string PathPluginsTxtFile = "";
+        public static string PathLoadOrderTxtFile = "";
         public static string ChoosenGame = "";
         public static string ModOrganizer = "";
         public static int GameFlagsByte;

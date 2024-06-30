@@ -34,6 +34,7 @@ namespace SkyrimBatApplication
             checkBoxAutoProfile.Checked = Settings.Default.CheckBoxAutoProfile;
 
             Program.PathPluginsTxtFile = Settings.Default.PathPluginsTxtFile;
+            Program.PathLoadOrderTxtFile = Settings.Default.PathLoadOrderTxtFile;
 
             Program.ChoosenGame = Settings.Default.ChoosenGame;
             lblChoosenGame.Text = Settings.Default.ChoosenGame;
@@ -67,6 +68,7 @@ namespace SkyrimBatApplication
             Settings.Default.CheckBoxAutoProfile = checkBoxAutoProfile.Checked;
             Settings.Default.PathModsDirectory = Program.PathModsDirectory;
             Settings.Default.PathPluginsTxtFile = Program.PathPluginsTxtFile;
+            Settings.Default.PathLoadOrderTxtFile = Program.PathLoadOrderTxtFile;
             Settings.Default.ChoosenGame = Program.ChoosenGame;
             Settings.Default.ModOrganizer = Program.ModOrganizer;
             Settings.Default.GameFlagsByte = Program.GameFlagsByte;
@@ -85,6 +87,8 @@ namespace SkyrimBatApplication
         private void txtPathProfileDirectory_TextChanged(object sender, EventArgs e)
         {
             Program.PathProfileDirectory = txtPathProfileDirectory.Text;
+            Program.PathPluginsTxtFile = Path.Combine(Program.PathProfileDirectory, "plugins.txt");
+            Program.PathLoadOrderTxtFile = Path.Combine(Program.PathProfileDirectory, "loadorder.txt");
         }
 
         
@@ -161,6 +165,7 @@ namespace SkyrimBatApplication
                 Program.PathProfileDirectory = selectedPath;
                 txtPathProfileDirectory.Text = selectedPath;
                 Program.PathPluginsTxtFile = Path.Combine(selectedPath, "plugins.txt");
+                Program.PathLoadOrderTxtFile = Path.Combine(selectedPath, "loadorder.txt");
                 Utility.IdentifyModOrganizerFromBrowser();
                 lblModOrganizer.Visible = true;
                 lblModOrganizer.Text = Program.ModOrganizer;
@@ -186,8 +191,8 @@ namespace SkyrimBatApplication
                 Utility.FindLatestModifiedProfileDirectory(1);
                 txtPathProfileDirectory.Text = Program.PathProfileDirectory;
             }
-            Utility.ReadLoadOrderFromPlugin();
-            Utility.ClassifyPlugins(Utility.plugins, Program.PathModsDirectory);
+            Utility.ReadLoadOrderFromFiles();
+            Utility.ClassifyPlugins(Utility.plugins);
             Utility.SortPluginsAfterClassification(Utility.plugins);
             Utility.RemoveOldBats(Path.Combine(Program.PathGameDirectory, "data"));
             MyRegex.RegexUpdateIndexes();

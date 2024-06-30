@@ -1,8 +1,10 @@
 ﻿using Bat_Manager;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SkyrimBatApplication
@@ -37,7 +39,6 @@ namespace SkyrimBatApplication
 
         public static bool IdentifyGameInstalledFromModOrganizer()
         {
-            //D:\Games\Steam\steamapps\common\Skyrim Special Edition\(((data)))\BatManager
             string currentPath = Directory.GetCurrentDirectory().GetParentDirectory(1);
             DirectoryInfo currentDir = new DirectoryInfo(currentPath);
 
@@ -96,7 +97,6 @@ namespace SkyrimBatApplication
             }
             else
             {
-                // MO2\Skyrim Special Edition\mods\BatManager\BatManager\bin
                 string grandParentDirectory = Directory.GetCurrentDirectory().GetParentDirectory(4); //
                 if (grandParentDirectory != null &&
                     Directory.Exists(Path.Combine(grandParentDirectory, "profiles")) &&
@@ -115,8 +115,6 @@ namespace SkyrimBatApplication
             if (Program.ModOrganizer == null) { return false; }
             else
             {
-                // MO2\Skyrim Special Edition\mods\BatManager\BatManager\bin
-                //Games\Steam\steamapps\((((mods))))\Skyrim Special Edition\mods
                 string grandParentDirectory = Path.Combine(Directory.GetCurrentDirectory().GetParentDirectory(4), "mods"); //
                 if (Directory.Exists(grandParentDirectory) && CheckForPluginsInside(grandParentDirectory))
                 {
@@ -180,7 +178,6 @@ namespace SkyrimBatApplication
 
         public static void FindLatestModifiedProfileDirectory(int depth)
         {
-            //string? parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
             string? parentDirectory = Program.PathProfileDirectory.GetParentDirectory(depth);
             if (parentDirectory == null) { return; }
 
@@ -191,10 +188,14 @@ namespace SkyrimBatApplication
                 .OrderByDescending(d => d.LastWriteTime)
                 .FirstOrDefault();
 
-            if (latestModifiedDirectory != null && File.Exists(Path.Combine(latestModifiedDirectory.FullName, "plugins.txt")))
+            string pluginsPath = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+            string loadorderPath = Path.Combine(latestModifiedDirectory.FullName, "loadorder.txt");
+
+            if (latestModifiedDirectory != null && File.Exists(pluginsPath) && File.Exists(loadorderPath))
             {
                 Program.PathProfileDirectory = latestModifiedDirectory.FullName;
-                Program.PathPluginsTxtFile = Path.Combine(latestModifiedDirectory.FullName, "plugins.txt");
+                Program.PathPluginsTxtFile = pluginsPath;
+                Program.PathLoadOrderTxtFile = loadorderPath;
             }
             else { return; }
         }
@@ -216,12 +217,6 @@ namespace SkyrimBatApplication
 
         public static bool InstalledByModOrganizer()
         {
-            /*
-            string installationDirectory = Directory.GetCurrentDirectory();
-            if (installationDirectory.Contains(Program.PathGameDirectory)) { return true; }
-            return false;
-            */
-
             string installationDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
             string gamePath = Path.GetFullPath(Program.PathGameDirectory);
             return installationDirectory.StartsWith(gamePath, StringComparison.OrdinalIgnoreCase);
@@ -256,14 +251,29 @@ namespace SkyrimBatApplication
             }
         }
 
-        public static void ReadLoadOrderFromPlugin()
+        public static void ReadLoadOrderFromFiles()
         {
-            var lines = File.ReadAllLines(Program.PathPluginsTxtFile);
+            var loadOrderLines = File.ReadAllLines(Program.PathLoadOrderTxtFile);
+            var pluginsLines = File.ReadAllLines(Program.PathPluginsTxtFile);
+            int linesDifference = loadOrderLines.Length - pluginsLines.Length + 1;
             int order = 0;
 
-            foreach (var line in lines)
+            for (int i = 1; i < linesDifference; i++)
             {
-                if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#") && line.StartsWith('*'))
+                if (!string.IsNullOrWhiteSpace(loadOrderLines[i]) && !loadOrderLines[i].StartsWith("#"))
+                {
+                    string pluginName = loadOrderLines[i].Trim().TrimStart('*');
+                    plugins.Add(new Plugin
+                    {
+                        Name = pluginName,
+                        LoadOrder = order++,
+                    });
+                }
+            }
+
+            foreach (var line in pluginsLines)
+            {
+                if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#") && line.StartsWith("*"))
                 {
                     string pluginName = line.Trim().TrimStart('*');
                     plugins.Add(new Plugin
@@ -292,50 +302,47 @@ namespace SkyrimBatApplication
             }
         }
 
-        public static void ClassifyPlugins(List<Plugin> plugins, string pluginsDirectory)
+        public static void ClassifyPlugins(List<Plugin> plugins)
         {
-            var allDirectories = Directory.GetDirectories(pluginsDirectory, "*");
-
-            int howMuchPlugins = 0;
-
-            foreach (var plugin in plugins)
+            Parallel.ForEach(plugins, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, (plugin) =>
             {
+                string dataPath = Path.Combine(Program.PathGameDirectory, "data", plugin.Name);
+                if (File.Exists(dataPath))
+                {
+                    plugin.IsLight = LightFlagCheck(dataPath);
+                    return;
+                }
+
+                var allDirectories = Directory.GetDirectories(Program.PathModsDirectory, "*");
+
                 foreach (var dir in allDirectories)
                 {
                     string pluginPath = Path.Combine(dir, plugin.Name);
-                    //string pluginPath = Path.Combine(pluginsDirectory, plugin.Name);
                     if (File.Exists(pluginPath))
                     {
-                        howMuchPlugins++;
                         plugin.IsLight = LightFlagCheck(pluginPath);
                         break;
                     }
                 }
-            }
-
-            //D:\Games\Steam\steamapps\common\Skyrim Special Edition\data\BatManager\batchFiles\testFileToFind.txt found
-            //D:\Games\Steam\steamapps\common\Skyrim Special Edition\data\BatManager current
-            //string? filePath = Directory.GetFiles(pluginsDirectory, "testFileToFind.txt", SearchOption.AllDirectories).FirstOrDefault();
-
-            // Program.ModOrganizer = filePath;
-            //Program.ModOrganizer = Directory.GetCurrentDirectory();
+            });
         }
 
         public static void SortPluginsAfterClassification(List<Plugin> plugins)
         {
             //int heavyOrder = 15;
             //int lightOrder = 64;
-            int heavyOrder = 15;
-            int lightOrder = 64;
+            int heavyOrder = 0;
+            int lightOrder = 0;
 
             foreach (var plugin in plugins)
             {
+                string name = plugin.Name;
                 if (plugin.IsLight)
                 {
                     plugin.Index = lightOrder.ToString("X3");
                     lightOrder++;
                 }
-                else
+                else if (!plugin.IsLight)
                 {
                     plugin.Index = heavyOrder.ToString("X2");
                     heavyOrder++;
