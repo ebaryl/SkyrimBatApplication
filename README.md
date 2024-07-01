@@ -1,1 +1,1 @@
-![App Screenshot](appScreenshot/app_screenshot.png)
+![App Screenshot](SkyrimBatApplication/appScreenshot/app_screenshot.png)
