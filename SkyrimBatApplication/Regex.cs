@@ -17,7 +17,7 @@ public class MyRegex()
 
         string[] txtFiles = Directory.GetFiles(currentDirectory, "*.txt", SearchOption.AllDirectories);
 
-        Plugin searchedPlugin = new Plugin();
+        Plugin? searchedPlugin = new Plugin();
         Regex hexRegex = new Regex(@"^[0-9A-F]{8}$");
 
         foreach (string file in txtFiles)
@@ -26,6 +26,7 @@ public class MyRegex()
             List<string> modifiedLines = new List<string>();
 
             if (!lines[0].Contains("#Bat Manager", StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(lines[0])) { continue; }
+            bool processCurrentSection = true;
 
             foreach (string line in lines)
             {
@@ -34,14 +35,21 @@ public class MyRegex()
                     modifiedLines.Add(line);
 
                     string pluginName = line.TrimStart(';').Trim();
-
                     if (pluginName.Contains("#"))
                     {
                         pluginName = pluginName.Split('#')[1];
-                        //[..^4] no last 4 chars
+
+                        if (pluginName.Equals("quit", StringComparison.OrdinalIgnoreCase))
+                        {
+                            processCurrentSection = false;
+                            searchedPlugin = null;
+                        }
+
                         searchedPlugin = Utility.plugins.FirstOrDefault(p => string.Equals(p.Name[..^4], pluginName, StringComparison.OrdinalIgnoreCase))!;
+                        
                         if (searchedPlugin != null)
                         {
+                            processCurrentSection = true;
                             continue;
                         }
                     }
@@ -51,7 +59,7 @@ public class MyRegex()
                     modifiedLines.Add("");
                     continue;
                 }
-                else if (searchedPlugin != null)
+                else if (processCurrentSection && searchedPlugin != null)
                 {
                     var words = line.Split(' ');
                     List<string> modifiedWords = new List<string>();
@@ -59,8 +67,11 @@ public class MyRegex()
                     {
                         if (word.Length == 8 && hexRegex.IsMatch(word))
                         {
-                            string fragment = word.Substring(0, searchedPlugin.IsLight ? 3 : 2);
-                            modifiedWords.Add(word.Replace(fragment, searchedPlugin.Index));
+                            //string fragment = word.Substring(0, searchedPlugin.IsLight ? 3 : 2);
+                            //modifiedWords.Add(word.Replace(fragment, searchedPlugin.Index));
+                            int fragmentLength = searchedPlugin.IsLight ? 3 : 2;
+                            string modifiedWord = searchedPlugin.Index + word.Substring(fragmentLength);
+                            modifiedWords.Add(modifiedWord);
                         }
                         else {
                             modifiedWords.Add(word);
