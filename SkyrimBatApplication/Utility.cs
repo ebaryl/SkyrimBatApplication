@@ -29,10 +29,17 @@ namespace SkyrimBatApplication
             }
             else if (File.Exists(Path.Combine(path, "Fallout4.exe")))
             {
-                Program.ChoosenGame = "fallout";
-                Program.GameFlagsByte = 0x04;
+                Program.ChoosenGame = "fallout4";
+                Program.GameFlagsByte = 0x02;
                 return true;
             }
+            else if (File.Exists(Path.Combine(path, "Starfield.exe")))
+            {
+                Program.ChoosenGame = "starfield";
+                Program.GameFlagsByte = 0x1;
+                return true;
+            }
+
 
             return false;
         }
@@ -53,11 +60,12 @@ namespace SkyrimBatApplication
                 Program.ChoosenGame = skyrimFound ? "skyrim" : "skyrimse";
                 Program.GameFlagsByte = 0x02;
             }
-            else if (fallout3Found || fallout4Found)
+            else if (fallout4Found)
             {
                 Program.ChoosenGame = "fallout";
-                Program.GameFlagsByte = 0x04;
+                Program.GameFlagsByte = 0x02;
             }
+           //else if ()
             else
             {
                 Program.ChoosenGame = "game not found";
